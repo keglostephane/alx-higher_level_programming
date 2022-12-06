@@ -11,9 +11,9 @@ def print_matrix_integer(matrix=[[]]):
     if matrix == [[]]:
         print("")
     else:
-        for l in matrix:
-            for e in l:
-                if e == l[len(l) - 1]:
-                    print("{:d}".format(e))
+        for line in matrix:
+            for value in line:
+                if value == line[len(line) - 1]:
+                    print("{:d}".format(value))
                 else:
-                    print("{:d}".format(e), end=' ')
+                    print("{:d}".format(value), end=' ')
