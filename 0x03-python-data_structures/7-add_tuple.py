@@ -44,5 +44,5 @@ def add_tuple(tuple_a=(), tuple_b=()):
             sum += 0
         new_tuple += (sum,)
         sum = 0
-        
+
     return new_tuple
