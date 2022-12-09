@@ -16,7 +16,7 @@ def uniq_add(my_list=[]):
     Result: 15
     """
     if my_list == []:
-        return []
+        return 0
     else:
         sum = 0
         uniq = set(my_list)
