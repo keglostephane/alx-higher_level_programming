@@ -18,7 +18,7 @@ def print_sorted_dictionary(a_dictionary):
     track: Low level
     """
     if a_dictionary == {}:
-        print("")
+        print({})
     else:
         for k in sorted(a_dictionary.keys()):
             print(f"{k}: {a_dictionary[k]}")
