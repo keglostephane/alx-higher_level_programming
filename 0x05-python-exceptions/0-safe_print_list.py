@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-65;6800;1cdef safe_print_list(my_list=[], x=0):
+def safe_print_list(my_list=[], x=0):
     """Prints `x` elements of a list.
 
     Args:
