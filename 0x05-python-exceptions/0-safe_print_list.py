@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-def safe_print_list(my_list=[], x=0):
+65;6800;1cdef safe_print_list(my_list=[], x=0):
     """Prints `x` elements of a list.
 
     Args:
@@ -10,7 +10,7 @@ def safe_print_list(my_list=[], x=0):
     (int) : the real number of elements printed
     """
     if my_list == [] or x < 0:
-        return None
+        return 0
     else:
         try:
             for i in range(x):
