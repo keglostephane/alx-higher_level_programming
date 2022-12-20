@@ -10,6 +10,7 @@ def safe_print_list(my_list=[], x=0):
     (int) : the real number of elements printed
     """
     if my_list == [] or x < 0:
+        print(None)
         return None
     else:
         try:
