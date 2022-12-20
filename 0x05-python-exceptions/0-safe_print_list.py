@@ -10,7 +10,8 @@
     (int) : the real number of elements printed
     """
     if my_list == [] or x < 0:
-        return 0
+        print(None)
+        return None
     else:
         try:
             for i in range(x):
