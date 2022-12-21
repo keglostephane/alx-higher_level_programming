@@ -3,6 +3,8 @@
 
 This module provides encapsulation to work with a square.
 """
+
+
 class Square:
     """An empty square class.
 
