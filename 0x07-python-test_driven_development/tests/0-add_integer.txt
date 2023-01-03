@@ -1,0 +1,43 @@
+``Add_Integer`` module
+======================
+
+``Add_Integer`` module provides the function ``add_integer`` that add
+two integers.
+
+How to use it
+-------------
+
+>>> add_integer = __import__("0-add_integer").add_integer
+
+calling ``add_integer`` function with integers.
+-------------------------------------------------
+>>> add_integer(2, 98)
+100
+>>> add_integer(-5, -15)
+-20
+>>> add_integer(-5, 100)
+95
+
+calling ``add_integer`` function with incorrect argument type.
+--------------------------------------------------------------
+>>> add_integer('5', 2)
+Traceback (most recent call last):
+TypeError: a must be an integer
+>>> add_integer(5, None)
+Traceback (most recent call last):
+TypeError: b must be an integer
+
+calling ``add_integer`` function with float
+-------------------------------------------
+>>> add_integer(5.5, 4.5)
+9
+>>> add_integer(1e6, 50)
+1000050
+
+calling ``add_integer`` function with missing arguments
+-------------------------------------------------------
+>>> add_integer(0)
+98
+>>> add_integer()
+Traceback (most recent call last):
+TypeError: add_integer() missing 1 required positional argument: 'a'
