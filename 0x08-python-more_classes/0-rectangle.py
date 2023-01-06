@@ -6,5 +6,5 @@ This module provides Classe and methods to work with ``Rectangle``.
 
 
 class Rectangle:
-    """ Represents a ``Rectangle``. """
+    """ Represents a `Rectangle`. """
     pass
