@@ -10,4 +10,4 @@ def common_elements(set_1, set_2):
     :rtype: set
     """
     if set_1 and set_2 is not None:
-        return set_1.intersection(set_2)
+        return set_1 & set_2
