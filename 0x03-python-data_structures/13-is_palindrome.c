@@ -47,7 +47,7 @@ int is_palindrome(listint_t **head)
 	slow = *head;
 	fast = *head;
 	/* Find the middle of the linked list */
-	while (fast && fast->next != NULL && fast->next->next != NULL)
+	while (fast && fast->next && fast->next->next)
 	{
 		slow = slow->next;
 		fast = fast->next->next;
