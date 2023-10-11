@@ -8,10 +8,7 @@ def best_score(a_dictionary):
         if no score found, return None
     :rtype: str
     """
-    if a_dictionary is None or a_dictionary is []:
+    if a_dictionary is None:
         return None
 
-    best = max(a_dictionary.values())
-    for key, value in a_dictionary.items():
-        if value == best:
-            return key
+    return max(a_dictionary, key=lambda x: a_dictionary[x], default=None)
