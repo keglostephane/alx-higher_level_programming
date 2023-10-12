@@ -8,6 +8,9 @@ def weight_average(my_list=[]):
         0 if the list is empty
     :rtype: int, float
     """
+    if my_list is []:
+        return 0
+
     sum = 0
     weight = 0
 
