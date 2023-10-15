@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <Python.h>
+#include "python3.8/Python.h"
 
 /**
  * print_python_list_info - prints some basic info about Python List
