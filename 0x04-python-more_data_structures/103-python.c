@@ -17,7 +17,10 @@ void print_python_bytes(PyObject *p)
 	printf("[.] bytes object info\n");
 
 	if (strcmp(type, "bytes"))
+	{
 		printf("  [ERROR] Invalid Bytes Object\n");
+		dprintf(STDERR_FILENO, "[ERROR]: Invalid Bytes Objects\n");
+	}
 
 	if (!strcmp(type, "bytes"))
 	{
@@ -58,7 +61,7 @@ void print_python_list(PyObject *p)
 
 	for (i = 0; i < len; i++)
 	{
-		type = (((list->ob_item[i])->ob_type)->tp_name);
+		type = list->ob_item[i]->ob_type->tp_name;
 		printf("Element %d: %s\n", i, type);
 		if (!strcmp(type, "bytes"))
 			print_python_bytes(list->ob_item[i]);
