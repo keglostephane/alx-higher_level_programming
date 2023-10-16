@@ -22,7 +22,7 @@ void print_python_bytes(PyObject *p)
 	if (!strcmp(type, "bytes"))
 	{
 		len = PyBytes_Size(p);
-		printf("  size = %zd\n", len);
+		printf("  size: %zd\n", len);
 
 		str = PyBytes_AsString(p);
 
