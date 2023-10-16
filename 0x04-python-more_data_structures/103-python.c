@@ -17,10 +17,7 @@ void print_python_bytes(PyObject *p)
 	printf("[.] bytes object info\n");
 
 	if (strcmp(type, "bytes"))
-	{
 		printf("  [ERROR] Invalid Bytes Object\n");
-		dprintf(STDERR_FILENO, "[ERROR]: Invalid Bytes Objects\n");
-	}
 
 	if (!strcmp(type, "bytes"))
 	{
