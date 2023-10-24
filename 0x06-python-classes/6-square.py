@@ -52,16 +52,15 @@ class Square:
         error = "position must be a tuple of 2 positive integers"
         if type(value) is not tuple:
             raise TypeError(error)
-        elif len(value) != 2:
-            raise TypeError(error)
-        elif type(value[0]) is not int:
-            raise TypeError(error)
-        elif value[0] < 0:
-            raise TypeError(error)
-        elif type(value[1]) is not int:
-            raise TypeError(error)
-        elif value[1] < 0:
-            raise TypeError(error)
+        else:
+            if len(value) != 2:
+                raise TypeError(error)
+            else:
+                if type(value[0]) is not int or type(value[1]) is not int:
+                    raise TypeError(error)
+                else:
+                    if value[0] < 0 or value[1] < 0:
+                        raise TypeError(error)
 
         self.__position = value
 
@@ -73,18 +72,11 @@ class Square:
     def my_print(self):
         """Print the square with the character '#'.
         """
-        offset_x = self.__position[0]
-        offset_y = self.__position[1]
-        offset_char = ' '
-        side = self.__size
-        if side == 0:
+        if not self.__size:
             print("")
         else:
-            for y in range(offset_y):
+            for i in range(self.__position[1]):
                 print("")
-            for i in range(side):
-                for x in range(offset_x):
-                    print(offset_char, end='')
-                for j in range(side):
-                    print("#", end='')
-                print("")
+            for i in range(self.__size):
+                print(" " * self.__position[0], end="")
+                print("#" * self.__size)
