@@ -48,6 +48,9 @@ class Square:
     @position.setter
     def position(self, value):
         """Set the position of the square.
+
+        :param value: new value of the position
+        :type value: tuple
         """
         error = "position must be a tuple of 2 positive integers"
         if type(value) is tuple and len(value) == 2 and type(value[0]) is int \
@@ -65,6 +68,8 @@ class Square:
         """Print the square with the character '#'.
         """
         if not self.__size:
+            for in range(self.__position[1]):
+                print("")
             print("")
         else:
             for i in range(self.__position[1]):
