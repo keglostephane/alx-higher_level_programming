@@ -73,11 +73,18 @@ class Square:
     def my_print(self):
         """Print the square with the character '#'.
         """
-        if not self.__size:
+        offset_x = self.__position[0]
+        offset_y = self.__position[1]
+        offset_char = ' '
+        side = self.__size
+        if side == 0:
             print("")
         else:
-            for i in range(self.__position[1]):
+            for y in range(offset_y):
                 print("")
-            for j in range(self.__size):
-                print(" " * self.__position[0], end="")
-                print("#" * self.__size)
+            for i in range(side):
+                for x in range(offset_x):
+                    print(offset_char, end='')
+                for j in range(side):
+                    print("#", end='')
+                print("")
