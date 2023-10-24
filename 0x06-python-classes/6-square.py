@@ -52,7 +52,7 @@ class Square:
         :param value: new value of the position
         :type value: tuple
         """
-        error = "position must be a tuple of 2 positive integers"
+        error = "position must be a tuple of 2 positive integers\n"
         if type(value) is tuple and len(value) == 2 and type(value[0]) is int \
            and value[0] > 0 and type(value[1]) is int and value[1] > 0:
             self.__position = value
@@ -68,8 +68,6 @@ class Square:
         """Print the square with the character '#'.
         """
         if not self.__size:
-            for in range(self.__position[1]):
-                print("")
             print("")
         else:
             for i in range(self.__position[1]):
