@@ -52,14 +52,24 @@ class Square:
         :param value: new value of the position
         :type value: tuple
         """
-        if type(value) is tuple and len(value) == 2 and type(value[0]) is int \
-           and value[0] >= 0 and type(value[1]) is int and value[1] >= 0:
-            self.__position = value
+        if type(value) is not tuple:
+            raise TypeError(error)
+        elif type(value) is tuple and (len(value) < 2 or len(value) > 2):
+            raise ValueError(error)
+        elif type(value) is tuple and (type(value[0]) is not int or
+                                       value[0] < 0):
+            raise ValueError(error)
+        elif type(value) is tuple and (type(value[1]) is not int or
+                                       value[1] < 0):
+            raise ValueError(error)
         else:
-            raise TypeError("position must be a tuple of 2 positive integers")
+            self.__position = value
 
     def area(self):
         """Return square area.
+
+        :return: the area of the square
+        :rtype: int
         """
         return self.__size ** 2
 
