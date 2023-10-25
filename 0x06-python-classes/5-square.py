@@ -5,21 +5,21 @@
 
 class Square:
     """Represents a square.
+
+    :param size: size of the square, defaults to 0
+    :type size: int, optional
     """
     def __init__(self, size=0):
         """Initialize a square.
-
-        :param size: size of the square, defaults to 0
-        :type size: int, optional
-        :return: a Square object with a size of `size`
-        :rtype: Square
         """
-
-        self.__size = size
+        self.size = size
 
     @property
     def size(self):
         """Get the size of the square.
+
+        :return: the size of the square
+        :rtype: int
         """
         return self.__size
 
@@ -39,6 +39,9 @@ class Square:
 
     def area(self):
         """Return square area.
+
+        :return: the square area
+        :rtype: int
         """
         return self.__size ** 2
 
