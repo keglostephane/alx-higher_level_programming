@@ -5,11 +5,11 @@
 
 class Square:
     """Represents a square.
+
+    :param size: size of the square
+    :type size: int
     """
     def __init__(self, size):
         """Initialize a square.
-
-        :param size: size of the square
-        :type size: int
         """
         self.__size = size
