@@ -16,8 +16,8 @@ class Square:
     def __init__(self, size=0, position=(0, 0)):
         """Initialize a square.
         """
-        self.__size = size
-        self.__position = position
+        self.size = size
+        self.position = position
 
     @property
     def size(self):
@@ -61,10 +61,15 @@ class Square:
         :type value: tuple
         :raises TypError: if value is not a tuple of 2 positive integers
         """
-        if type(value) is not tuple or len(value) != 2 or \
-           type(value[0]) is not int or value[0] < 0 or \
-           type(value[1]) is not int or value[1] < 0:
-            raise TypeError("position must be a tuple of 2 positive integers")
+        error = "position must be a tuple of 2 positive integers"
+        if type(value) is not tuple:
+            raise TypeError(error)
+        if len(value) != 2:
+            raise TypeError(error)
+        if type(value[0]) is not int or value[0] < 0:
+            raise TypeError(error)
+        if type(value[1]) is not int or value[1] < 0:
+            raise TypeError(error)
 
         self.__position = value
 
