@@ -5,21 +5,24 @@
 
 class Square:
     """Represents a square.
+
+    :param size: size of the square, defaults to 0
+    :type size: int, optional
+    :return: a Square object with a size of `size`
+    :rtype: Square
     """
     def __init__(self, size=0):
         """Initialize a square.
-
-        :param size: size of the square, defaults to 0
-        :type size: int, optional
-        :return: a Square object with a size of `size`
-        :rtype: Square
         """
 
-        self.__size = size
+        self.size = size
 
     @property
     def size(self):
         """Get the size of the square.
+
+        :return: the actual size of the square
+        :rtype: int
         """
         return self.__size
 
@@ -29,6 +32,8 @@ class Square:
 
         :param value: new value of the square
         :type value: int
+        :raises TypeError: if size is not an integer
+        :raises ValueError: if size is negative
         """
         if type(value) is not int:
             raise TypeError("size must be an integer")
@@ -39,6 +44,9 @@ class Square:
 
     def area(self):
         """Return square area.
+
+        :return: the area of the square
+        :rtype: int
         """
         return self.__size ** 2
 
