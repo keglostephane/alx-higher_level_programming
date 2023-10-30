@@ -83,5 +83,5 @@ class Rectangle:
         """
         if not self.__width or not self.__height:
             return 0
-        else:
-            return (self.__width + self.__height) * 2
+
+        return (self.__width + self.__height) * 2
