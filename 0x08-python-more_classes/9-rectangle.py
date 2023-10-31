@@ -123,7 +123,7 @@ class Rectangle:
         :return: a rectangle with width == height == size
         :rtype: Rectangle
         """
-        return cls(size, size)
+        return Rectangle(size, size)
 
     def __str__(self):
         """Human readable representation of the rectangle.
