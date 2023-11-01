@@ -17,7 +17,8 @@ def text_indentation(text):
     if type(text) is not str:
         raise TypeError("text must be a string")
 
-    for char in text:
-        print("{}".format(char), end="")
-        if char in ('.', '?', ':'):
-            print("\n")
+    for line in text.splitlines(keepends=True):
+        for char in line.strip():
+            print("{}".format(char), end="")
+            if char in (".", "?", ":"):
+                print("\n")
