@@ -40,3 +40,7 @@ TypeError: b must be an integer
 >>> add_integer(1.5e324)
 Traceback (most recent call last):
 OverflowError: cannot convert float infinity to integer
+
+>>> add_integer("NaN")
+Traceback (most recent call last):
+TypeError: a must be an integer
