@@ -12,6 +12,6 @@ def read_file(filename=""):
     :param filename: name of the file to print
     :type filename: str
     """
-    with open(filename, encoding="UTF8") as fp:
+    with open(filename, encoding="utf-8") as fp:
         for line in fp.readlines():
             print(line, end="")
