@@ -6,4 +6,6 @@ This module provide ``BaseGeometry`` class.
 
 
 class BaseGeometry:
+    """An empty class.
+    """
     pass
