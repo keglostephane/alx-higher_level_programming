@@ -13,7 +13,7 @@ def append_after(filename="", search_string="", new_string=""):
     :param new_string: replacement string
     :type new_string: str
     """
-    with open(filename, 'a+', encoding='utf-8') as f:
+    with open(filename, 'a', encoding='utf-8') as f:
         while line := f.readline():
             if search_string in line:
                 f.write(new_string)
