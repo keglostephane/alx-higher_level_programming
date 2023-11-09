@@ -24,12 +24,13 @@ status = []
 try:
     for line in sys.stdin:
         tline += 1
-        data = line.rstrip('\n').split()
-        status_value, filesize = data[-2:]
-        size += int(filesize)
+        data = line.split()
+        status_value = data[-2]
+        filesize = int(data[-1])
+        size += filesize
         status.append(status_value)
 
-        if tline == 9:
+        if tline == 10:
             tline = 0
             print(f"File size: {size:d}")
             for code in status_code:
