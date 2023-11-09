@@ -35,10 +35,10 @@ try:
             for code in status_code:
                 if code in status:
                     print(f"{code}: {status.count(code)}")
-
 except KeyboardInterrupt:
+    pass
+finally:
     print(f"File size: {size}")
     for code in status_code:
         if code in status:
             print(f"{code}: {status.count(code)}")
-    sys.exit()
