@@ -16,47 +16,28 @@ possible ``status code``: 200, 301, 400, 401, 403, 404, 405, 500
 """
 import sys
 
-count = 0
 tline = 0
-tsize = []
+size = 0
+status_code = ["200", "301", "400", "401", "403", "404", "405", "500"]
 status = []
-tstatus = {"200": [],
-           "301": [],
-           "400": [],
-           "401": [],
-           "403": [],
-           "404": [],
-           "405": [],
-           "300": []}
 
 try:
     for line in sys.stdin:
         tline += 1
-        data = line.rstrip('\n').split()[-2:]
-        status_code, filesize = data
-        status.append(status_code)
-        count += int(filesize)
+        data = line.rstrip('\n').split()
+        status_value, filesize = data[-2:]
+        size += int(filesize)
+        status.append(status_value)
 
-        if (tline % 10 == 0):
-            tsize.append(count)
-            count = 0
-            for key in tstatus.keys():
-                if key not in status:
-                    tstatus[key].append(0)
-                else:
-                    for code in status:
-                        if key == code:
-                            count += 1
-                    tstatus[key].append(count)
-                    count = 0
+        if tline == 9:
+            tline = 0
+            print(f"File size: {size:d}")
+            for code in status_code:
+                if code in status:
+                    print(f"{code}: {status.count(code):d}")
+
 except KeyboardInterrupt:
-    pass
-finally:
-    for i in range(len(tsize)):
-        print(f"File size: {tsize[i]}")
-        for key in tstatus.keys():
-            if tstatus[key][i]:
-                print(f"{key}: {tstatus[key][i]:d}")
-
-    print(tsize)
-    print(tstatus)
+    print(f"File size: {size:d}")
+    for code in status_code:
+        if code in status:
+            print(f"{code}: {status.count(code):d}")
