@@ -38,7 +38,7 @@ try:
         count += int(filesize)
 
         if (tline % 10 == 0):
-            tsize.append(count if not tsize else count + tsize[-1])
+            tsize.append(count)
             count = 0
             for key in tstatus.keys():
                 if key not in status:
@@ -47,8 +47,7 @@ try:
                     for code in status:
                         if key == code:
                             count += 1
-                    tstatus[key].append(count if not tstatus[key]
-                                        else count + tstatus[key][-1])
+                    tstatus[key].append(count)
                     count = 0
 except KeyboardInterrupt:
     pass
