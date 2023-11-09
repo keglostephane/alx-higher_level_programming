@@ -34,11 +34,11 @@ try:
             print(f"File size: {size}")
             for code in status_code:
                 if code in status:
-                    print(f"{code}: {status.count(code)}")
+                    print(f"{code}: {status.count(code):d}")
 except KeyboardInterrupt:
     pass
 finally:
     print(f"File size: {size}")
     for code in status_code:
         if code in status:
-            print(f"{code}: {status.count(code)}")
+            print(f"{code}: {status.count(code):d}")
