@@ -31,13 +31,14 @@ try:
 
         if tline == 9:
             tline = 0
-            print(f"File size: {size:d}")
+            print(f"File size: {size}")
             for code in status_code:
                 if code in status:
-                    print(f"{code}: {status.count(code):d}")
+                    print(f"{code}: {status.count(code)}")
 
 except KeyboardInterrupt:
-    print(f"File size: {size:d}")
+    print(f"File size: {size}")
     for code in status_code:
         if code in status:
-            print(f"{code}: {status.count(code):d}")
+            print(f"{code}: {status.count(code)}")
+    sys.exit()
