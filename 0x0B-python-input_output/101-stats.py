@@ -25,10 +25,11 @@ try:
     for line in sys.stdin:
         tline += 1
         data = line.split()
-        status_value = data[-2]
-        filesize = int(data[-1])
-        size += filesize
-        status.append(status_value)
+        if len(data) >= 2 and data[-1].isdigit():
+            status_value = data[-2]
+            filesize = int(data[-1])
+            size += filesize
+            status.append(status_value)
 
         if tline == 10:
             tline = 0
