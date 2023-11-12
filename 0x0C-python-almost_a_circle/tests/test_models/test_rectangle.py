@@ -52,3 +52,37 @@ class TestRectangle(unittest.TestCase):
         self.assertRaises(TypeError, Rectangle)
         # Missing height argument
         self.assertRaises(TypeError, Rectangle, 7)
+
+    def testCreateRectangleWithIncorrectArguments(self):
+        """Test create Rectangle with invalid arhuments"""
+        with self.assertRaises(TypeError) as error:
+            rect = Rectangle("3", 5)
+        self.assertEqual(str(error.exception), "width must be an integer")
+
+        with self.assertRaises(TypeError) as error:
+            rect = Rectangle(3, "5")
+        self.assertEqual(str(error.exception), "height must be an integer")
+
+        with self.assertRaises(TypeError) as error:
+            rect = Rectangle(3, 5, 1.5, 1)
+        self.assertEqual(str(error.exception), "x must be an integer")
+
+        with self.assertRaises(TypeError) as error:
+            rect = Rectangle(4, 5, 2, 3.5)
+        self.assertEqual(str(error.exception), "y must be an integer")
+
+        with self.assertRaises(ValueError) as error:
+            rect = Rectangle(0, 5)
+        self.assertEqual(str(error.exception), "width must be > 0")
+
+        with self.assertRaises(ValueError) as error:
+            rect = Rectangle(3, 0)
+        self.assertEqual(str(error.exception), "height must be > 0")
+
+        with self.assertRaises(ValueError) as error:
+            rect = Rectangle(8, 5, -1, 2)
+        self.assertEqual(str(error.exception), "x must be >= 0")
+
+        with self.assertRaises(ValueError) as error:
+            rect = Rectangle(9, 6, 1, -3)
+        self.assertEqual(str(error.exception), "y must be >= 0")
