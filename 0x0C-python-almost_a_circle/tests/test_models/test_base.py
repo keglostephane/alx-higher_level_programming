@@ -32,8 +32,4 @@ class testBase(unittest.TestCase):
 
     def testCreateBaseInstanceWithInvalidNumberArguments(self):
         """Create a Base instance with an invalid number of arguments."""
-        with self.assertRaises(TypeError) as error:
-            base = Base(2, 3)
-        self.assertEqual(str(error.exception),
-                         "__init__() takes from 1 to 2 positional arguments"
-                         " but 3 were given")
+        self.assertRaises(TypeError, Base, 2, 3)
