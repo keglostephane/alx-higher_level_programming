@@ -6,7 +6,8 @@
 class Base:
     """A base class.
 
-    :param id:
+    :param id: id of a ``Base`` instance
+    :type id: int
     """
     __nb_objects = 0
 
