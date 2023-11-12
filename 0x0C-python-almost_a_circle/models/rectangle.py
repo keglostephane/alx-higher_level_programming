@@ -117,3 +117,11 @@ class Rectangle(Base):
             raise ValueError("y must be >= 0")
 
         self.__y = value
+
+    def area(self):
+        """Return the area of rectangle.
+
+        :return: rectangle's area
+        :rtype: int
+        """
+        return self.__width * self.__height
