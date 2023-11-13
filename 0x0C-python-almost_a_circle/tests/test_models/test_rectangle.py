@@ -147,3 +147,41 @@ class TestRectangle(unittest.TestCase):
         expected = "[Rectangle] (6) 0/0 - 1/5\n"
         print('\n' + result)
         self.assertEqual(result, expected)
+
+    def testRectanglePrintWithCoordinates(self):
+        """Test printing of Rectangle using coordinates"""
+        with patch('sys.stdout', new_callable=StringIO) as output:
+            rect = Rectangle(6, 5, 2, 1, 1)
+            rect.display()
+        result = output.getvalue()
+        expected = ("\n"
+                    "  ######\n"
+                    "  ######\n"
+                    "  ######\n"
+                    "  ######\n"
+                    "  ######\n")
+        print('\n' + result)
+        self.assertEqual(result, expected)
+
+        with patch('sys.stdout', new_callable=StringIO) as output:
+            rect = Rectangle(2, 3, 0, 0, 5)
+            rect.display()
+        result = output.getvalue()
+        expected = ("##\n"
+                    "##\n"
+                    "##\n")
+        print('\n' + result)
+        self.assertEqual(result, expected)
+
+        with patch('sys.stdout', new_callable=StringIO) as output:
+            rect = Rectangle(1, 1, 3, 5, 23)
+            rect.display()
+        result = output.getvalue()
+        expected = ("\n"
+                    "\n"
+                    "\n"
+                    "\n"
+                    "\n"
+                    "   #\n")
+        print('\n' + result)
+        self.assertEqual(result, expected)
