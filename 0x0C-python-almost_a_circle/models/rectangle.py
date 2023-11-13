@@ -139,3 +139,20 @@ class Rectangle(Base):
         """Human readable representation of rectangle"""
         return (f"[Rectangle] ({self.id}) {self.__x}/{self.__y}"
                 f" - {self.__width}/{self.__height}")
+
+    def update(self, *args):
+        """Update the rectangle's attributes
+
+        :param args: new values of rectangle attributes
+        :type args: int
+        """
+        if len(args) == 1:
+            self.id, = args
+        elif len(args) == 2:
+            self.id, self.width = args
+        elif len(args) == 3:
+            self.id, self.width, self.height = args
+        elif len(args) == 4:
+            self.id, self.width, self.height, self.x = args
+        elif len(args) >= 5:
+            self.id, self.width, self.height, self.x, self.y = args
