@@ -128,7 +128,11 @@ class Rectangle(Base):
 
     def display(self):
         """Print the rectangle"""
+        for i in range(self.__y):
+            print("")
         for i in range(self.__height):
+            for j in range(self.__x):
+                print(" ", end='')
             print('#' * self.__width)
 
     def __str__(self):
