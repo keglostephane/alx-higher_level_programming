@@ -125,3 +125,8 @@ class Rectangle(Base):
         :rtype: int
         """
         return self.__width * self.__height
+
+    def display(self):
+        """Print the rectangle"""
+        for i in range(self.__height):
+            print('#' * self.__width)
