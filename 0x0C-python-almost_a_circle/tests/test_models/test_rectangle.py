@@ -129,3 +129,21 @@ class TestRectangle(unittest.TestCase):
                     "##\n")
         print('\n' + result)
         self.assertEqual(result, expected)
+
+    def testRectangleAsStr(self):
+        """Test human readable representation of Rectangle"""
+        with patch('sys.stdout', new_callable=StringIO) as output:
+            rect = Rectangle(4, 3, 2, 1, 0)
+            print(rect)
+        result = output.getvalue()
+        expected = "[Rectangle] (0) 2/1 - 4/3\n"
+        print('\n' + result)
+        self.assertEqual(result, expected)
+
+        with patch('sys.stdout', new_callable=StringIO) as output:
+            rect = Rectangle(1, 5, 0, 0, 6)
+            print(rect)
+        result = output.getvalue()
+        expected = "[Rectangle] (6) 0/0 - 1/5\n"
+        print('\n' + result)
+        self.assertEqual(result, expected)
