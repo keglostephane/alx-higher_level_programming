@@ -2,6 +2,8 @@
 """Unittest for Rectangle class
 """
 import unittest
+from unittest.mock import patch
+from io import StringIO
 from models.rectangle import Rectangle
 from models.base import Base
 
@@ -97,3 +99,33 @@ class TestRectangle(unittest.TestCase):
 
         rect = Rectangle(8, 9, 9, 8, 0)
         self.assertEqual(rect.area(), 72)
+
+    def testRectanglePrint(self):
+        """Test printing Rectangle"""
+        with patch('sys.stdout', new_callable=StringIO) as output:
+            rect = Rectangle(4, 3)
+            rect.display()
+        result = output.getvalue()
+        expected = ("####\n"
+                    "####\n"
+                    "####\n")
+        print('\n' + result)
+        self.assertEqual(result, expected)
+
+        with patch('sys.stdout', new_callable=StringIO) as output:
+            rect = Rectangle(1, 1)
+            rect.display()
+        result = output.getvalue()
+        expected = ("#\n")
+        print('\n' + result)
+        self.assertEqual(result, expected)
+
+        with patch('sys.stdout', new_callable=StringIO) as output:
+            rect = Rectangle(2, 3)
+            rect.display()
+        result = output.getvalue()
+        expected = ("##\n"
+                    "##\n"
+                    "##\n")
+        print('\n' + result)
+        self.assertEqual(result, expected)
