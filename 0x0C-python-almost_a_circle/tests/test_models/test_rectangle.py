@@ -100,7 +100,7 @@ class TestRectangle(unittest.TestCase):
         rect = Rectangle(8, 9, 9, 8, 0)
         self.assertEqual(rect.area(), 72)
 
-    def testRectanglePrint(self):
+    def testRectangleDisplay(self):
         """Test printing Rectangle"""
         with patch('sys.stdout', new_callable=StringIO) as output:
             rect = Rectangle(4, 3)
@@ -109,7 +109,8 @@ class TestRectangle(unittest.TestCase):
         expected = ("####\n"
                     "####\n"
                     "####\n")
-        print('\n' + result)
+        print("\nCalling display() method of Rectangle(4, 3)")
+        print(result)
         self.assertEqual(result, expected)
 
         with patch('sys.stdout', new_callable=StringIO) as output:
@@ -117,7 +118,8 @@ class TestRectangle(unittest.TestCase):
             rect.display()
         result = output.getvalue()
         expected = ("#\n")
-        print('\n' + result)
+        print("\nCalling display() method of Rectangle(1, 1)")
+        print(result)
         self.assertEqual(result, expected)
 
         with patch('sys.stdout', new_callable=StringIO) as output:
@@ -127,17 +129,19 @@ class TestRectangle(unittest.TestCase):
         expected = ("##\n"
                     "##\n"
                     "##\n")
-        print('\n' + result)
+        print("\nCalling display() method of Rectangle(2, 3)")
+        print(result)
         self.assertEqual(result, expected)
 
-    def testRectangleAsStr(self):
+    def testRectangleStr(self):
         """Test human readable representation of Rectangle"""
         with patch('sys.stdout', new_callable=StringIO) as output:
             rect = Rectangle(4, 3, 2, 1, 0)
             print(rect)
         result = output.getvalue()
         expected = "[Rectangle] (0) 2/1 - 4/3\n"
-        print('\n' + result)
+        print("\nCalling str() method of Rectangle(4, 3, 2, 1, 0)")
+        print(result)
         self.assertEqual(result, expected)
 
         with patch('sys.stdout', new_callable=StringIO) as output:
@@ -145,10 +149,11 @@ class TestRectangle(unittest.TestCase):
             print(rect)
         result = output.getvalue()
         expected = "[Rectangle] (6) 0/0 - 1/5\n"
-        print('\n' + result)
+        print("\nCalling str() method of Rectangle(1, 5, 0, 0, 6)")
+        print(result)
         self.assertEqual(result, expected)
 
-    def testRectanglePrintWithCoordinates(self):
+    def testRectangleDisplayWithCoordinates(self):
         """Test printing of Rectangle using coordinates"""
         with patch('sys.stdout', new_callable=StringIO) as output:
             rect = Rectangle(6, 5, 2, 1, 1)
@@ -160,7 +165,8 @@ class TestRectangle(unittest.TestCase):
                     "  ######\n"
                     "  ######\n"
                     "  ######\n")
-        print('\n' + result)
+        print("\nCalling display() method of Rectangle(6, 5, 2, 1, 1)")
+        print(result)
         self.assertEqual(result, expected)
 
         with patch('sys.stdout', new_callable=StringIO) as output:
@@ -170,7 +176,8 @@ class TestRectangle(unittest.TestCase):
         expected = ("##\n"
                     "##\n"
                     "##\n")
-        print('\n' + result)
+        print("\nCalling display() method of Rectangle(2, 3, 0, 0, 5)")
+        print(result)
         self.assertEqual(result, expected)
 
         with patch('sys.stdout', new_callable=StringIO) as output:
@@ -183,5 +190,55 @@ class TestRectangle(unittest.TestCase):
                     "\n"
                     "\n"
                     "   #\n")
-        print('\n' + result)
+        print("\nCalling display() method of Rectangle(1, 1, 3, 5, 23)")
+        print(result)
         self.assertEqual(result, expected)
+
+    def testRectangleUpdateWithPositionalArguments(self):
+        """Test Rectangle update() with positional arguments"""
+        rect = Rectangle(7, 3, 0, 0, 1)
+
+        rect.update()
+        self.assertEqual(rect.width, 7)
+        self.assertEqual(rect.height, 3)
+        self.assertEqual(rect.x, 0)
+        self.assertEqual(rect.y, 0)
+        self.assertEqual(rect.id, 1)
+
+        rect.update(15)
+        self.assertEqual(rect.width, 7)
+        self.assertEqual(rect.height, 3)
+        self.assertEqual(rect.x, 0)
+        self.assertEqual(rect.y, 0)
+        self.assertEqual(rect.id, 15)
+
+        rect.update(15, 9)
+        self.assertEqual(rect.width, 9)
+        self.assertEqual(rect.height, 3)
+        self.assertEqual(rect.x, 0)
+        self.assertEqual(rect.y, 0)
+        self.assertEqual(rect.id, 15)
+
+        rect.update(23, 17, 2)
+        self.assertEqual(rect.width, 17)
+        self.assertEqual(rect.height, 2)
+        self.assertEqual(rect.x, 0)
+        self.assertEqual(rect.y, 0)
+        self.assertEqual(rect.id, 23)
+
+        rect.update(6, 23, 8, 7)
+        self.assertEqual(rect.width, 23)
+        self.assertEqual(rect.height, 8)
+        self.assertEqual(rect.x, 7)
+        self.assertEqual(rect.y, 0)
+        self.assertEqual(rect.id, 6)
+
+        rect.update(23, 17, 3, 5, 99)
+        self.assertEqual(rect.width, 17)
+        self.assertEqual(rect.height, 3)
+        self.assertEqual(rect.x, 5)
+        self.assertEqual(rect.y, 99)
+        self.assertEqual(rect.id, 23)
+
+        with self.assertRaises(ValueError):
+            rect.update(2, 7, 9, 6, 3, 16)
