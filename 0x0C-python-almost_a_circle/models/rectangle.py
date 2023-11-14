@@ -178,4 +178,5 @@ class Rectangle(Base):
         :return: a dictionary with Rectangle's attributes as keys
         :rtype: dict
         """
-        return self.__dict__
+        return {key.lstrip('_Rectangle'): value
+                for key, value in self.__dict__.items()}
