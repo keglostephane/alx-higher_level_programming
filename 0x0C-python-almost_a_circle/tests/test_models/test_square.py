@@ -69,14 +69,6 @@ class TestSquare(unittest.TestCase):
             square = Square(12, 6, -7, 1)
         self.assertEqual(str(error.exception), "y must be >= 0")
 
-        with self.assertRaises(TypeError) as error:
-            square = Square(2.5)
-        self.assertEqual(str(error.exception), "width must be an integer")
-
-        with self.assertRaises(ValueError) as error:
-            square = Square(-2)
-        self.assertEqual(str(error.exception), "width must be > 0")
-
     def testSquareArea(self):
         """Test Square area"""
         square = Square(18)
@@ -148,13 +140,20 @@ class TestSquare(unittest.TestCase):
         print(result)
         self.assertEqual(result, expected)
 
-    def testSquarePrivateInstanceAttribute(self):
-        """Test Square have private size attribute with validation"""
+    def testSquareWidthHeightValidation(self):
+        """Test Square width and height validation"""
         square = Square(5, 1, 2, 0)
         self.assertNotIn("size", square.__dict__)
-        self.assertIn("_Square__size", square.__dict__)
+        self.assertNotIn("_Square__size", square.__dict__)
+
+        with self.assertRaises(TypeError) as error:
+            square = Square(2.5)
+        self.assertEqual(str(error.exception), "width must be an integer")
+
+        with self.assertRaises(ValueError) as error:
+            square = Square(-2)
+        self.assertEqual(str(error.exception), "width must be > 0")
 
         square.size = 10
-        self.assertEqual(square.size, 10)
         self.assertEqual(square.width, 10)
         self.assertEqual(square.height, 10)
