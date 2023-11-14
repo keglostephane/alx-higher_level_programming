@@ -288,3 +288,26 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(rect.x, 7)
         self.assertEqual(rect.y, 10)
         self.assertEqual(rect.id, 21)
+
+    def testSquareToDictionary(self):
+        """Test Square dictionnary representation"""
+        rect = Rectangle(15, 12)
+        self.assertEqual(type(rect.to_dictionary()), dict)
+        self.assertEqual(rect.to_dictionary(), rect.__dict__)
+
+        rect = Rectangle(16, 10, 1, 10)
+        self.assertEqual(type(rect.to_dictionary()), dict)
+        self.assertEqual(rect.to_dictionary(), rect.__dict__)
+
+        rect = Rectangle(23, 18, 1, 0, 2)
+        rect.update(id=13, height=23)
+        self.assertEqual(type(rect.to_dictionary()), dict)
+        self.assertEqual(rect.to_dictionary(), rect.__dict__)
+
+        with patch('sys.stdout', new_callable=StringIO) as output:
+            rect = Rectangle(75, 25, 1, 1, 1)
+            print(rect.to_dictionary())
+            result = output.getvalue()
+            expected = ("{'_Rectangle__width': 75, '_Rectangle__height': 25, "
+                        "'_Rectangle__x': 1, '_Rectangle__y': 1, 'id': 1}\n")
+            self.assertEqual(result, expected)
