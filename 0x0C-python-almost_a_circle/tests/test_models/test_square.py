@@ -46,28 +46,28 @@ class TestSquare(unittest.TestCase):
         # incorrect size argument
         with self.assertRaises(TypeError) as error:
             square = Square("3", 0, 0, 1)
-        self.assertEqual(str(error.exception), "width must be an integer")
+            self.assertEqual(str(error.exception), "width must be an integer")
 
         with self.assertRaises(ValueError) as error:
             square = Square(0, 0, 0, 1)
-        self.assertEqual(str(error.exception), "width must be > 0")
+            self.assertEqual(str(error.exception), "width must be > 0")
 
         # incorrect x, y arguments
         with self.assertRaises(TypeError) as error:
             square = Square(8, 2.5, 0, 1)
-        self.assertEqual(str(error.exception), "x must be an integer")
+            self.assertEqual(str(error.exception), "x must be an integer")
 
         with self.assertRaises(TypeError) as error:
             square = Square(12, 3, "3", 1)
-        self.assertEqual(str(error.exception), "y must be an integer")
+            self.assertEqual(str(error.exception), "y must be an integer")
 
         with self.assertRaises(ValueError) as error:
             square = Square(5, -2, 0, 1)
-        self.assertEqual(str(error.exception), "x must be >= 0")
+            self.assertEqual(str(error.exception), "x must be >= 0")
 
         with self.assertRaises(ValueError) as error:
             square = Square(12, 6, -7, 1)
-        self.assertEqual(str(error.exception), "y must be >= 0")
+            self.assertEqual(str(error.exception), "y must be >= 0")
 
     def testSquareArea(self):
         """Test Square area"""
@@ -82,63 +82,53 @@ class TestSquare(unittest.TestCase):
         with patch('sys.stdout', new_callable=StringIO) as output:
             square = Square(4)
             square.display()
-        result = output.getvalue()
-        expected = ("####\n"
-                    "####\n"
-                    "####\n"
-                    "####\n")
-        print("\nCalling display() method of Square(4)")
-        print(result)
-        self.assertEqual(result, expected)
+            result = output.getvalue()
+            expected = ("####\n"
+                        "####\n"
+                        "####\n"
+                        "####\n")
+            self.assertEqual(result, expected)
 
         with patch('sys.stdout', new_callable=StringIO) as output:
             square = Square(3, 1, 1, 5)
             square.display()
-        result = output.getvalue()
-        expected = ("\n"
-                    " ###\n"
-                    " ###\n"
-                    " ###\n")
-        print("\nCalling display() method of Square(3, 1, 1, 5)")
-        print(result)
-        self.assertEqual(result, expected)
+            result = output.getvalue()
+            expected = ("\n"
+                        " ###\n"
+                        " ###\n"
+                        " ###\n")
+            self.assertEqual(result, expected)
 
         with patch('sys.stdout', new_callable=StringIO) as output:
             square = Square(7, 5, 2, 3)
             square.display()
-        result = output.getvalue()
-        expected = ("\n"
-                    "\n"
-                    "     #######\n"
-                    "     #######\n"
-                    "     #######\n"
-                    "     #######\n"
-                    "     #######\n"
-                    "     #######\n"
-                    "     #######\n")
-        print("\nCalling display() method of Square(7, 5, 2, 3)")
-        print(result)
-        self.assertEqual(result, expected)
+            result = output.getvalue()
+            expected = ("\n"
+                        "\n"
+                        "     #######\n"
+                        "     #######\n"
+                        "     #######\n"
+                        "     #######\n"
+                        "     #######\n"
+                        "     #######\n"
+                        "     #######\n")
+            self.assertEqual(result, expected)
 
     def testSquareStr(self):
         """Test human readable representation of Square"""
         with patch('sys.stdout', new_callable=StringIO) as output:
             square = Square(12, 3, 4, 2)
             print(square)
-        result = output.getvalue()
-        expected = "[Square] (2) 3/4 - 12\n"
-        print("\nCalling str() method of Square(12, 3, 4, 2)")
-        print(result)
-        self.assertEqual(result, expected)
+            result = output.getvalue()
+            expected = "[Square] (2) 3/4 - 12\n"
+            self.assertEqual(result, expected)
 
         with patch('sys.stdout', new_callable=StringIO) as output:
             square = Square(9, 0, 0, 0)
             print(square)
-        result = output.getvalue()
-        expected = "[Square] (0) 0/0 - 9\n"
-        print("\nCalling str() method of Square(9, 0, 0, 0)")
-        print(result)
-        self.assertEqual(result, expected)
+            result = output.getvalue()
+            expected = "[Square] (0) 0/0 - 9\n"
+            self.assertEqual(result, expected)
 
     def testSquareWidthHeightValidation(self):
         """Test Square width and height validation"""
@@ -148,11 +138,11 @@ class TestSquare(unittest.TestCase):
 
         with self.assertRaises(TypeError) as error:
             square = Square(2.5)
-        self.assertEqual(str(error.exception), "width must be an integer")
+            self.assertEqual(str(error.exception), "width must be an integer")
 
         with self.assertRaises(ValueError) as error:
             square = Square(-2)
-        self.assertEqual(str(error.exception), "width must be > 0")
+            self.assertEqual(str(error.exception), "width must be > 0")
 
         square.size = 10
         self.assertEqual(square.width, 10)

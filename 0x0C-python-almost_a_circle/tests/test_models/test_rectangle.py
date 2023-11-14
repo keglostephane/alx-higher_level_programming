@@ -59,35 +59,35 @@ class TestRectangle(unittest.TestCase):
         """Test create Rectangle with invalid arhuments"""
         with self.assertRaises(TypeError) as error:
             rect = Rectangle("3", 5)
-        self.assertEqual(str(error.exception), "width must be an integer")
+            self.assertEqual(str(error.exception), "width must be an integer")
 
         with self.assertRaises(TypeError) as error:
             rect = Rectangle(3, "5")
-        self.assertEqual(str(error.exception), "height must be an integer")
+            self.assertEqual(str(error.exception), "height must be an integer")
 
         with self.assertRaises(TypeError) as error:
             rect = Rectangle(3, 5, 1.5, 1)
-        self.assertEqual(str(error.exception), "x must be an integer")
+            self.assertEqual(str(error.exception), "x must be an integer")
 
         with self.assertRaises(TypeError) as error:
             rect = Rectangle(4, 5, 2, 3.5)
-        self.assertEqual(str(error.exception), "y must be an integer")
+            self.assertEqual(str(error.exception), "y must be an integer")
 
         with self.assertRaises(ValueError) as error:
             rect = Rectangle(0, 5)
-        self.assertEqual(str(error.exception), "width must be > 0")
+            self.assertEqual(str(error.exception), "width must be > 0")
 
         with self.assertRaises(ValueError) as error:
             rect = Rectangle(3, 0)
-        self.assertEqual(str(error.exception), "height must be > 0")
+            self.assertEqual(str(error.exception), "height must be > 0")
 
         with self.assertRaises(ValueError) as error:
             rect = Rectangle(8, 5, -1, 2)
-        self.assertEqual(str(error.exception), "x must be >= 0")
+            self.assertEqual(str(error.exception), "x must be >= 0")
 
         with self.assertRaises(ValueError) as error:
             rect = Rectangle(9, 6, 1, -3)
-        self.assertEqual(str(error.exception), "y must be >= 0")
+            self.assertEqual(str(error.exception), "y must be >= 0")
 
     def testRectangleArea(self):
         """Test Rectangle's area computation"""
@@ -105,94 +105,80 @@ class TestRectangle(unittest.TestCase):
         with patch('sys.stdout', new_callable=StringIO) as output:
             rect = Rectangle(4, 3)
             rect.display()
-        result = output.getvalue()
-        expected = ("####\n"
-                    "####\n"
-                    "####\n")
-        print("\nCalling display() method of Rectangle(4, 3)")
-        print(result)
-        self.assertEqual(result, expected)
+            result = output.getvalue()
+            expected = ("####\n"
+                        "####\n"
+                        "####\n")
+            self.assertEqual(result, expected)
 
         with patch('sys.stdout', new_callable=StringIO) as output:
             rect = Rectangle(1, 1)
             rect.display()
-        result = output.getvalue()
-        expected = ("#\n")
-        print("\nCalling display() method of Rectangle(1, 1)")
-        print(result)
-        self.assertEqual(result, expected)
+            result = output.getvalue()
+            expected = ("#\n")
+            print("\nCalling display() method of Rectangle(1, 1)")
+            print(result)
+            self.assertEqual(result, expected)
 
         with patch('sys.stdout', new_callable=StringIO) as output:
             rect = Rectangle(2, 3)
             rect.display()
-        result = output.getvalue()
-        expected = ("##\n"
-                    "##\n"
-                    "##\n")
-        print("\nCalling display() method of Rectangle(2, 3)")
-        print(result)
-        self.assertEqual(result, expected)
+            result = output.getvalue()
+            expected = ("##\n"
+                        "##\n"
+                        "##\n")
+            self.assertEqual(result, expected)
 
     def testRectangleStr(self):
         """Test human readable representation of Rectangle"""
         with patch('sys.stdout', new_callable=StringIO) as output:
             rect = Rectangle(4, 3, 2, 1, 0)
             print(rect)
-        result = output.getvalue()
-        expected = "[Rectangle] (0) 2/1 - 4/3\n"
-        print("\nCalling str() method of Rectangle(4, 3, 2, 1, 0)")
-        print(result)
-        self.assertEqual(result, expected)
+            result = output.getvalue()
+            expected = "[Rectangle] (0) 2/1 - 4/3\n"
+            self.assertEqual(result, expected)
 
         with patch('sys.stdout', new_callable=StringIO) as output:
             rect = Rectangle(1, 5, 0, 0, 6)
             print(rect)
-        result = output.getvalue()
-        expected = "[Rectangle] (6) 0/0 - 1/5\n"
-        print("\nCalling str() method of Rectangle(1, 5, 0, 0, 6)")
-        print(result)
-        self.assertEqual(result, expected)
+            result = output.getvalue()
+            expected = "[Rectangle] (6) 0/0 - 1/5\n"
+            self.assertEqual(result, expected)
 
     def testRectangleDisplayWithCoordinates(self):
         """Test printing of Rectangle using coordinates"""
         with patch('sys.stdout', new_callable=StringIO) as output:
             rect = Rectangle(6, 5, 2, 1, 1)
             rect.display()
-        result = output.getvalue()
-        expected = ("\n"
-                    "  ######\n"
-                    "  ######\n"
-                    "  ######\n"
-                    "  ######\n"
-                    "  ######\n")
-        print("\nCalling display() method of Rectangle(6, 5, 2, 1, 1)")
-        print(result)
-        self.assertEqual(result, expected)
+            result = output.getvalue()
+            expected = ("\n"
+                        "  ######\n"
+                        "  ######\n"
+                        "  ######\n"
+                        "  ######\n"
+                        "  ######\n")
+            self.assertEqual(result, expected)
 
         with patch('sys.stdout', new_callable=StringIO) as output:
             rect = Rectangle(2, 3, 0, 0, 5)
             rect.display()
-        result = output.getvalue()
-        expected = ("##\n"
-                    "##\n"
-                    "##\n")
-        print("\nCalling display() method of Rectangle(2, 3, 0, 0, 5)")
-        print(result)
-        self.assertEqual(result, expected)
+            result = output.getvalue()
+            expected = ("##\n"
+                        "##\n"
+                        "##\n")
+            self.assertEqual(result, expected)
 
         with patch('sys.stdout', new_callable=StringIO) as output:
             rect = Rectangle(1, 1, 3, 5, 23)
             rect.display()
-        result = output.getvalue()
-        expected = ("\n"
-                    "\n"
-                    "\n"
-                    "\n"
-                    "\n"
-                    "   #\n")
-        print("\nCalling display() method of Rectangle(1, 1, 3, 5, 23)")
-        print(result)
-        self.assertEqual(result, expected)
+            result = output.getvalue()
+            expected = ("\n"
+                        "\n"
+                        "\n"
+                        "\n"
+                        "\n"
+                        "   #\n")
+            self.assertEqual(result, expected)
 
     def testRectangleUpdateWithPositionalArguments(self):
         """Test Rectangle update() with positional arguments"""
@@ -291,23 +277,29 @@ class TestRectangle(unittest.TestCase):
 
     def testSquareToDictionary(self):
         """Test Square dictionnary representation"""
-        rect = Rectangle(15, 12)
+        rect = Rectangle(75, 25, 1, 1, 1)
+        expected = {'width': 75, 'height': 25, 'x': 1, 'y': 1, 'id': 1}
+        self.assertEqual(rect.to_dictionary(), expected)
         self.assertEqual(type(rect.to_dictionary()), dict)
-        self.assertEqual(rect.to_dictionary(), rect.__dict__)
 
-        rect = Rectangle(16, 10, 1, 10)
+        rect = Rectangle(width=17, height=13, id=18)
+        rect.update(14, 5)
+        expected = {'width': 5, 'height': 13, 'x': 0, 'y': 0, 'id': 14}
+        self.assertEqual(rect.to_dictionary(), expected)
         self.assertEqual(type(rect.to_dictionary()), dict)
-        self.assertEqual(rect.to_dictionary(), rect.__dict__)
 
-        rect = Rectangle(23, 18, 1, 0, 2)
-        rect.update(id=13, height=23)
-        self.assertEqual(type(rect.to_dictionary()), dict)
-        self.assertEqual(rect.to_dictionary(), rect.__dict__)
+        rect1 = Rectangle(width=17, height=13, id=18)
+        rect2 = Rectangle(17, 13, 0, 0, 18)
+        expected = {'width': 17, 'height': 13, 'x': 0, 'y': 0, 'id': 18}
+        self.assertEqual(rect1.to_dictionary(), expected)
+        self.assertEqual(type(rect1.to_dictionary()), dict)
+        self.assertEqual(rect2.to_dictionary(), expected)
+        self.assertEqual(type(rect2.to_dictionary()), dict)
 
-        with patch('sys.stdout', new_callable=StringIO) as output:
-            rect = Rectangle(75, 25, 1, 1, 1)
-            print(rect.to_dictionary())
-            result = output.getvalue()
-            expected = ("{'_Rectangle__width': 75, '_Rectangle__height': 25, "
-                        "'_Rectangle__x': 1, '_Rectangle__y': 1, 'id': 1}\n")
-            self.assertEqual(result, expected)
+        rect1 = Rectangle(width=17, height=13, id=18)
+        rect2 = Rectangle(17, 13, 1, 0, 18)
+        expected = {'width': 17, 'height': 13, 'x': 0, 'y': 0, 'id': 18}
+        self.assertEqual(rect1.to_dictionary(), expected)
+        self.assertEqual(type(rect1.to_dictionary()), dict)
+        self.assertNotEqual(rect2.to_dictionary(), expected)
+        self.assertEqual(type(rect2.to_dictionary()), dict)
