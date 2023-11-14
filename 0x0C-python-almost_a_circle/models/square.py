@@ -52,3 +52,31 @@ class Square(Rectangle):
     def __str__(self):
         """Human readable representation of Square"""
         return f"[Square] ({self.id}) {self.x}/{self.y} - {self.width}"
+
+    def update(self, *args, **kwargs):
+        """Update the square's attributes
+
+        :param args: new values of square attributes
+        :type args: tuple
+        :param kwargs: key:value values
+        :type kwargs: dict
+        """
+        if args is not None and len(args) != 0:
+            if len(args) == 1:
+                self.id, = args
+            elif len(args) == 2:
+                self.id, self.size = args
+            elif len(args) == 3:
+                self.id, self.size, self.x = args
+            elif len(args) >= 4:
+                self.id, self.size, self.x, self.y = args
+        else:
+            for key, value in kwargs.items():
+                if key == "id":
+                    self.id = value
+                if key == "size":
+                    self.size = value
+                if key == "x":
+                    self.x = value
+                if key == "y":
+                    self.y = value
