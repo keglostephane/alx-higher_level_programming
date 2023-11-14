@@ -138,7 +138,7 @@ class Rectangle(Base):
     def __str__(self):
         """Human readable representation of rectangle"""
         return (f"[Rectangle] ({self.id}) {self.__x}/{self.__y}"
-                f" - {self.__width}/{self.__height}")
+                f" - {self.width}/{self.height}")
 
     def update(self, *args, **kwargs):
         """Update the rectangle's attributes
