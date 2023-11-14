@@ -228,3 +228,33 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(square.height, 30)
         self.assertEqual(square.x, 5)
         self.assertEqual(square.y, 3)
+
+    def testSquareToDictionary(self):
+        """Test Square dictionnary representation"""
+        square = Square(75, 1, 1)
+        square.update(id=0)
+        expected = {'size': 75, 'x': 1, 'y': 1, 'id': 0}
+        self.assertEqual(square.to_dictionary(), expected)
+        self.assertEqual(type(square.to_dictionary()), dict)
+
+        square = Square(size=17, id=18)
+        expected = {'size': 17, 'x': 0, 'y': 0, 'id': 18}
+        self.assertEqual(square.to_dictionary(), expected)
+        self.assertEqual(type(square.to_dictionary()), dict)
+
+        square1 = Square(size=25, x=1, y=3, id=18)
+        square2 = Square(25, 1, 3, 18)
+        expected = {'size': 25, 'x': 1, 'y': 3, 'id': 18}
+        self.assertEqual(square1.to_dictionary(), expected)
+        self.assertEqual(type(square1.to_dictionary()), dict)
+        self.assertEqual(square2.to_dictionary(), expected)
+        self.assertEqual(type(square2.to_dictionary()), dict)
+
+        square1 = Square(size=17, id=18)
+        square2 = Square(17, 0, 0, 18)
+        square2.update(45)
+        expected = {'size': 17, 'x': 0, 'y': 0, 'id': 18}
+        self.assertEqual(square1.to_dictionary(), expected)
+        self.assertEqual(type(square1.to_dictionary()), dict)
+        self.assertNotEqual(square2.to_dictionary(), expected)
+        self.assertEqual(type(square2.to_dictionary()), dict)
