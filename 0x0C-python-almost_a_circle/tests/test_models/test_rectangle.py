@@ -242,3 +242,49 @@ class TestRectangle(unittest.TestCase):
 
         with self.assertRaises(ValueError):
             rect.update(2, 7, 9, 6, 3, 16)
+
+    def testRectangleUpdateWithPositionalAndKeywordArguments(self):
+        """Test Rectangle update() with positional and keyword arguments"""
+        rect = Rectangle(19, 15, 5, 3, 23)
+
+        rect.update()
+        self.assertEqual(rect.width, 19)
+        self.assertEqual(rect.height, 15)
+        self.assertEqual(rect.x, 5)
+        self.assertEqual(rect.y, 3)
+        self.assertEqual(rect.id, 23)
+
+        rect.update(78, 2, 7)
+        self.assertEqual(rect.width, 2)
+        self.assertEqual(rect.height, 7)
+        self.assertEqual(rect.x, 5)
+        self.assertEqual(rect.y, 3)
+        self.assertEqual(rect.id, 78)
+
+        rect.update(id=8, x=3, y=10)
+        self.assertEqual(rect.width, 2)
+        self.assertEqual(rect.height, 7)
+        self.assertEqual(rect.x, 3)
+        self.assertEqual(rect.y, 10)
+        self.assertEqual(rect.id, 8)
+
+        rect.update(21, 14, 13, 7, id=10, y=20, width=17)
+        self.assertEqual(rect.width, 14)
+        self.assertEqual(rect.height, 13)
+        self.assertEqual(rect.x, 7)
+        self.assertEqual(rect.y, 10)
+        self.assertEqual(rect.id, 21)
+
+        rect.update(*(), **{"width": 16, "height": 10})
+        self.assertEqual(rect.width, 16)
+        self.assertEqual(rect.height, 10)
+        self.assertEqual(rect.x, 7)
+        self.assertEqual(rect.y, 10)
+        self.assertEqual(rect.id, 21)
+
+        rect.update(widht=27, height=2, z=50)
+        self.assertEqual(rect.width, 16)
+        self.assertEqual(rect.height, 2)
+        self.assertEqual(rect.x, 7)
+        self.assertEqual(rect.y, 10)
+        self.assertEqual(rect.id, 21)
