@@ -23,7 +23,7 @@ class Square(Rectangle):
     def __init__(self, size, x=0, y=0, id=None):
         """Square initializer"""
         self.size = size
-        super().__init__(size, size, x, y, id)
+        super().__init__(self.size, self.size, x, y, id)
 
     @property
     def size(self):
@@ -32,7 +32,7 @@ class Square(Rectangle):
         :return: the square's size
         :rtype: int
         """
-        return self.__size
+        return self.width
 
     @size.setter
     def size(self, value):
@@ -46,7 +46,6 @@ class Square(Rectangle):
         if value <= 0:
             raise ValueError("width must be > 0")
 
-        self.__size = value
         self.width = value
         self.height = value
 
