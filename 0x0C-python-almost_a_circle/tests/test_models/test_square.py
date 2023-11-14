@@ -157,3 +157,84 @@ class TestSquare(unittest.TestCase):
         square.size = 10
         self.assertEqual(square.width, 10)
         self.assertEqual(square.height, 10)
+
+    def testSquareUpdateWithPositionalArguments(self):
+        """Test Square update() with positional arguments"""
+        square = Square(3, 2, 1, 5)
+
+        square.update()
+        self.assertEqual(square.id, 5)
+        self.assertEqual(square.width, 3)
+        self.assertEqual(square.height, 3)
+        self.assertEqual(square.x, 2)
+        self.assertEqual(square.y, 1)
+
+        square.update(1)
+        self.assertEqual(square.id, 1)
+        self.assertEqual(square.width, 3)
+        self.assertEqual(square.height, 3)
+        self.assertEqual(square.x, 2)
+        self.assertEqual(square.y, 1)
+
+        square.update(10, 5)
+        self.assertEqual(square.id, 10)
+        self.assertEqual(square.width, 5)
+        self.assertEqual(square.height, 5)
+        self.assertEqual(square.x, 2)
+        self.assertEqual(square.y, 1)
+
+        square.update(0, 8, 7)
+        self.assertEqual(square.id, 0)
+        self.assertEqual(square.width, 8)
+        self.assertEqual(square.height, 8)
+        self.assertEqual(square.x, 7)
+        self.assertEqual(square.y, 1)
+
+        square.update(12, 10, 5, 7)
+        self.assertEqual(square.id, 12)
+        self.assertEqual(square.width, 10)
+        self.assertEqual(square.height, 10)
+        self.assertEqual(square.x, 5)
+        self.assertEqual(square.y, 7)
+
+        with self.assertRaises(ValueError):
+            square.update(3, 12, 7, 15, 10, 11)
+
+    def testSquareWithPositionalAndKeywordArguments(self):
+        """Test Square update() with positional and keyword arguments"""
+        square = Square(12, 7, 8, 5)
+
+        square.update()
+        self.assertEqual(square.id, 5)
+        self.assertEqual(square.width, 12)
+        self.assertEqual(square.height, 12)
+        self.assertEqual(square.x, 7)
+        self.assertEqual(square.y, 8)
+
+        square.update(20, 1, 2)
+        self.assertEqual(square.id, 20)
+        self.assertEqual(square.width, 1)
+        self.assertEqual(square.height, 1)
+        self.assertEqual(square.x, 2)
+        self.assertEqual(square.y, 8)
+
+        square.update(size=30, id=3, y=10)
+        self.assertEqual(square.id, 3)
+        self.assertEqual(square.width, 30)
+        self.assertEqual(square.height, 30)
+        self.assertEqual(square.x, 2)
+        self.assertEqual(square.y, 10)
+
+        square.update(6, 50, 5, 3, size=45, id=16, x=0)
+        self.assertEqual(square.id, 6)
+        self.assertEqual(square.width, 50)
+        self.assertEqual(square.height, 50)
+        self.assertEqual(square.x, 5)
+        self.assertEqual(square.y, 3)
+
+        square.update(1, 30, **{"x": 0, "y": 1})
+        self.assertEqual(square.id, 1)
+        self.assertEqual(square.width, 30)
+        self.assertEqual(square.height, 30)
+        self.assertEqual(square.x, 5)
+        self.assertEqual(square.y, 3)
