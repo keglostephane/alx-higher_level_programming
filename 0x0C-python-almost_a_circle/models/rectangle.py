@@ -140,19 +140,34 @@ class Rectangle(Base):
         return (f"[Rectangle] ({self.id}) {self.__x}/{self.__y}"
                 f" - {self.__width}/{self.__height}")
 
-    def update(self, *args):
+    def update(self, *args, **kwargs):
         """Update the rectangle's attributes
 
         :param args: new values of rectangle attributes
-        :type args: int
+        :type args: tuple
+        :param kwargs: key/value values
+        :type kwargs: dict
         """
-        if len(args) == 1:
-            self.id, = args
-        elif len(args) == 2:
-            self.id, self.width = args
-        elif len(args) == 3:
-            self.id, self.width, self.height = args
-        elif len(args) == 4:
-            self.id, self.width, self.height, self.x = args
-        elif len(args) >= 5:
-            self.id, self.width, self.height, self.x, self.y = args
+        if args is not None and len(args) != 0:
+            if len(args) == 1:
+                self.id, = args
+            elif len(args) == 2:
+                self.id, self.width = args
+            elif len(args) == 3:
+                self.id, self.width, self.height = args
+            elif len(args) == 4:
+                self.id, self.width, self.height, self.x = args
+            elif len(args) >= 5:
+                self.id, self.width, self.height, self.x, self.y = args
+        else:
+            for key, value in kwargs.items():
+                if key == "id":
+                    self.id = value
+                elif key == "width":
+                    self.width = value
+                elif key == "height":
+                    self.height = value
+                elif key == "x":
+                    self.x = value
+                elif key == "y":
+                    self.y = value
