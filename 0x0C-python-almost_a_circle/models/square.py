@@ -80,3 +80,16 @@ class Square(Rectangle):
                     self.x = value
                 if key == "y":
                     self.y = value
+
+    def to_dictionary(self):
+        """Return the dictionary representation of Square.
+
+        :return: a dictionary describing a square
+        :rtype: dict
+        """
+        square_dict = {'size': self.width}
+        for key, value in super().to_dictionary().items():
+            if key != "width" and key != "height":
+                square_dict[key] = value
+
+        return square_dict
