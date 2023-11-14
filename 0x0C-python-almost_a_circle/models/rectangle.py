@@ -171,3 +171,11 @@ class Rectangle(Base):
                     self.x = value
                 elif key == "y":
                     self.y = value
+
+    def to_dictionary(self):
+        """Return the dictionary representation of Rectangle.
+
+        :return: a dictionary with Rectangle's attributes as keys
+        :rtype: dict
+        """
+        return self.__dict__
