@@ -33,3 +33,36 @@ class testBase(unittest.TestCase):
     def testCreateBaseInstanceWithInvalidNumberArguments(self):
         """Create a Base instance with an invalid number of arguments."""
         self.assertRaises(TypeError, Base, 2, 3)
+
+    def testListDictionaryToJsonString(self):
+        """Test JSON string representation of a list of dictionary"""
+        list_dict = None
+        json_str = Base.to_json_string(list_dict)
+        self.assertEqual(json_str, "[]")
+
+        list_dict = []
+        json_str = Base.to_json_string(list_dict)
+        self.assertEqual(json_str, "[]")
+
+        list_dict = [{'a': 1, 'b': True, 'c': -7.2}]
+        json_str = '[{"a": 1, "b": true, "c": -7.2}]'
+        self.assertEqual(Base.to_json_string(list_dict), json_str)
+
+        list_dict = [{'a': 2, 'c': ['Hello', 'ALX']}, {'a': True, 'b': None}]
+        json_str = '[{"a": 2, "c": ["Hello", "ALX"]}, {"a": true, "b": null}]'
+        self.assertEqual(Base.to_json_string(list_dict), json_str)
+
+        list_dict = [["hello", "world"], [{"hello": 5, "world": 5}]]
+        json_str = '[["hello", "world"], [{"hello": 5, "world": 5}]]'
+        self.assertEqual(Base.to_json_string(list_dict), json_str)
+
+        list_dict = [{1, 2, 3}]
+        with self.assertRaises(TypeError) as error:
+            Base.to_json_string(list_dict)
+            self.assertEqual(str(error.exception),
+                             ("Object of type set "
+                              "is not JSON serializable"))
+
+        list_dict = [{'a': 10, 'b': (1, 2, 3)}]
+        json_str = '[{"a": 10, "b": [1, 2, 3]}]'
+        self.assertEqual(Base.to_json_string(list_dict), json_str)

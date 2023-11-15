@@ -275,8 +275,8 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(rect.y, 10)
         self.assertEqual(rect.id, 21)
 
-    def testSquareToDictionary(self):
-        """Test Square dictionnary representation"""
+    def testRectangleToDictionary(self):
+        """Test Rectangle dictionnary representation"""
         rect = Rectangle(75, 25, 1, 1, 1)
         expected = {'width': 75, 'height': 25, 'x': 1, 'y': 1, 'id': 1}
         self.assertEqual(rect.to_dictionary(), expected)
