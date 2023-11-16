@@ -185,3 +185,61 @@ class testBase(unittest.TestCase):
         with self.assertRaises(json.decoder.JSONDecodeError):
             json_string = "{1, 2, 3}"
             Base.from_json_string(json_string)
+
+    def testCreateFromDict(self):
+        """ Test the creation of a Base instance from a dictionary."""
+        # test class with empty dictionary
+        rect = Rectangle.create()
+        self.assertEqual(rect.width, 1)
+        self.assertEqual(rect.height, 1)
+        self.assertEqual(rect.x, 0)
+        self.assertEqual(rect.y, 0)
+        self.assertEqual(rect.id, 0)
+
+        square = Square.create()
+        self.assertEqual(square.size, 1)
+        self.assertEqual(square.x, 0)
+        self.assertEqual(square.y, 0)
+        self.assertEqual(square.id, 0)
+
+        base = Base.create()
+        self.assertEqual(base.id, 0)
+
+        # test if instances created are unique
+        square1 = Square(4, 1, 2, 1)
+        square2 = square1.create(size=4, x=1, y=2, id=1)
+        square3 = Square.create(size=4, x=1, y=2, id=1)
+        self.assertNotEqual(id(square1), id(square2))
+        self.assertNotEqual(id(square1), id(square3))
+
+        # test with expected data
+        rect1 = Rectangle(15, 12)
+        rect1_dict = rect1.to_dictionary()
+        rect2 = Rectangle.create(width=15, height=12)
+        rect2_dict = rect2.to_dictionary()
+        self.assertNotEqual(rect1_dict, rect2_dict)
+        self.assertNotEqual(rect1, rect2)
+
+        square1 = Square(25, 0, 1, 5)
+        square2 = Square.create(**{'size': 25, 'x': 0, 'y': 1, 'id': 5})
+        s1_dict = square1.to_dictionary()
+        s2_dict = square2.to_dictionary()
+        self.assertEqual(s1_dict, s2_dict)
+        self.assertNotEqual(square1, square2)
+
+        square = Square.create(id=5)
+        self.assertEqual(square.size, 1)
+        self.assertEqual(square.x, 0)
+        self.assertEqual(square.y, 0)
+
+        rect = Rectangle.create(x=0, y=0)
+        self.assertEqual(rect.width, 1)
+        self.assertEqual(rect.height, 1)
+        self.assertEqual(rect.id, 0)
+
+        # test with wrong data
+        with self.assertRaises(TypeError):
+            square = Square.create(size=2.5, x=1, y=2, id=1)
+
+        with self.assertRaises(ValueError):
+            rectangle = Rectangle.create(width=15, height=0, x=1, y=2)
