@@ -129,7 +129,7 @@ class testBase(unittest.TestCase):
             data2 = fp.read()
         self.assertLess(len(data2), len(data1))
 
-        # test the expected data
+        # test with expected data
         cls = Square
         obj1 = Square(25, 12, 3, 1)
         obj2 = Rectangle(12, 9, 1, 2, 3)
@@ -150,3 +150,38 @@ class testBase(unittest.TestCase):
         list_objs = [obj1, obj2]
         with self.assertRaises(AttributeError):
             cls.save_to_file(list_objs)
+
+    def testFromJSONStringToList(self):
+        """Test from_json_string() returns the original list of dictionary"""
+        # json_string is None or empty
+        json_string = None
+        expected = []
+        self.assertEqual(Base.from_json_string(json_string), expected)
+
+        json_string = ""
+        expected = []
+        self.assertEqual(Base.from_json_string(json_string), expected)
+
+        # test with expected data
+        json_string = "[]"
+        expected = []
+        self.assertEqual(Base.from_json_string(json_string), expected)
+
+        json_string = '[{"size": 12, "x": 1, "y": 0, "id":10}]'
+        expected = [{'size': 12, 'x': 1, 'y': 0, 'id': 10}]
+        self.assertEqual(Base.from_json_string(json_string), expected)
+
+        json_string = ('[{"width": 16, "height": 19, "x": 1, "y": 1, "id": 0}'
+                       ', {"size": 64, "x": 0, "y": 1, "id": 18}]')
+        expected = [{'width': 16, 'height': 19, 'x': 1, 'y': 1, 'id': 0},
+                    {'size': 64, 'x': 0, 'y': 1, 'id': 18}]
+        self.assertEqual(Base.from_json_string(json_string), expected)
+
+        # test with wrong data
+        with self.assertRaises(json.decoder.JSONDecodeError):
+            json_string = "{'size': 15, 'id': 12}"
+            Base.from_json_string(json_string)
+
+        with self.assertRaises(json.decoder.JSONDecodeError):
+            json_string = "{1, 2, 3}"
+            Base.from_json_string(json_string)
