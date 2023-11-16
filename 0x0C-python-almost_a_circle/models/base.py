@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """A Base class module
 """
+import json
 
 
 class Base:
@@ -28,8 +29,6 @@ class Base:
         :return: JSON string representation of list of dictionaries
         :rtype: str
         """
-        import json
-
         if list_dictionaries is None or len(list_dictionaries) == 0:
             return "[]"
         else:
@@ -52,3 +51,17 @@ class Base:
                     list_dict.append(obj.to_dictionary())
                 data = cls.to_json_string(list_dict)
                 fp.write(data)
+
+    @staticmethod
+    def from_json_string(json_string):
+        """Returns the list from the JSON string representatio.
+
+        :param json_string: a JSON string representation
+        :type json_string: str
+        :return: the list of dict used to create the JSON string
+        :rtype: list
+        """
+        if json_string is None or json_string == "":
+            return []
+        else:
+            return json.loads(json_string)
