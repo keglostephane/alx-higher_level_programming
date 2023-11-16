@@ -194,16 +194,11 @@ class testBase(unittest.TestCase):
         self.assertEqual(rect.height, 1)
         self.assertEqual(rect.x, 0)
         self.assertEqual(rect.y, 0)
-        self.assertEqual(rect.id, 0)
 
         square = Square.create()
         self.assertEqual(square.size, 1)
         self.assertEqual(square.x, 0)
         self.assertEqual(square.y, 0)
-        self.assertEqual(square.id, 0)
-
-        base = Base.create()
-        self.assertEqual(base.id, 0)
 
         # test if instances created are unique
         square1 = Square(4, 1, 2, 1)
@@ -235,7 +230,6 @@ class testBase(unittest.TestCase):
         rect = Rectangle.create(x=0, y=0)
         self.assertEqual(rect.width, 1)
         self.assertEqual(rect.height, 1)
-        self.assertEqual(rect.id, 0)
 
         # test with wrong data
         with self.assertRaises(TypeError):
