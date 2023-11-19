@@ -237,3 +237,88 @@ class testBase(unittest.TestCase):
 
         with self.assertRaises(ValueError):
             rectangle = Rectangle.create(width=15, height=0, x=1, y=2)
+
+    def testLoadFromFile(self):
+        """Test load_from_file() returns a list of instance"""
+
+        import os
+
+        # missing json file
+        cls = Rectangle
+        filename = f"{cls.__name__}.json"
+        if os.path.exists(filename):
+            os.remove(filename)
+        self.assertFalse(os.path.exists(filename))
+        expected = []
+        self.assertEqual(cls.load_from_file(), expected)
+
+        # json file exists and content is an empty list
+        cls = Square
+        filename = f"{cls.__name__}.json"
+        cls.save_to_file([])
+        expected = []
+        self.assertTrue(os.path.exists(filename))
+        self.assertEqual(cls.load_from_file(), [])
+        os.remove(filename)
+
+        # json file exists and contains two Square objects
+        cls = Square
+        filename = f"{cls.__name__}.json"
+        square1 = cls(12, 1, 1, 0)
+        square2 = cls(50, 0, 1, 1)
+        list_objs = [square1, square2]
+        cls.save_to_file(list_objs)
+        list_inst = cls.load_from_file()
+        os.remove(filename)
+        self.assertEqual(len(list_objs), len(list_inst))
+        self.assertNotEqual(list_objs[0], list_inst[0])
+        self.assertEqual(list_objs[0].__str__(), list_inst[0].__str__())
+        self.assertNotEqual(square2, list_inst[1])
+        self.assertEqual(list_objs[0].__str__(), list_inst[0].__str__())
+        self.assertIsInstance(list_inst[0], cls)
+        self.assertIsInstance(list_inst[1], cls)
+
+        # json file exists and contains two Rectangle objects
+        cls = Rectangle
+        filename = f"{cls.__name__}.json"
+        rect1 = cls(12, 10)
+        rect2 = cls(10, 12)
+        list_objs = [rect1, rect2]
+        cls.save_to_file(list_objs)
+        list_inst = cls.load_from_file()
+        os.remove(filename)
+        self.assertTrue(len(list_objs), len(list_inst))
+        self.assertNotEqual(list_objs[0], list_inst[0])
+        self.assertEqual(list_objs[0].__str__(), list_inst[0].__str__())
+        self.assertNotEqual(list_objs[1], list_inst[1])
+        self.assertEqual(list_objs[1].__str__(), list_inst[1].__str__())
+        self.assertIsInstance(list_inst[0], cls)
+        self.assertIsInstance(list_inst[1], cls)
+
+        # json file exits and contain invalid data
+        # mixed Square and Rectangle instances
+        cls = Square
+        filename = f"{cls.__name__}.json"
+        square = cls(16)
+        rect = Rectangle(18, 15)
+        list_objs = [square, rect]
+        cls.save_to_file(list_objs)
+        list_inst = cls.load_from_file()
+        os.remove(filename)
+        self.assertEqual(len(list_objs), len(list_inst))
+        self.assertNotEqual(list_objs[0], list_inst[0])
+        self.assertEqual(list_objs[0].__str__(), list_inst[0].__str__())
+        self.assertNotEqual(list_objs[1], list_inst[1])
+        self.assertNotEqual(list_objs[1].__str__(), list_inst[1].__str__())
+        self.assertIsInstance(list_inst[0], cls)
+        self.assertIsInstance(list_inst[1], cls)
+
+        # Square and str instances
+        cls = Square
+        filename = f"{cls.__name__}.json"
+        square = cls(12)
+        string = "Hello"
+        list_objs = [square, string]
+        with self.assertRaises(AttributeError):
+            cls.save_to_file(list_objs)
+            list_inst = cls.load_from_file()
