@@ -24,16 +24,18 @@ if __name__ == "__main__":
         WHERE states.name LIKE BINARY %s
         ORDER BY cities.id ASC
     """
-    param = (sys.argv[4],)
-    cursor.execute(query, param)
-    rows = cursor.fetchall()
 
-    for row in rows:
-        print(row[0], end="")
-        if row != rows[-1]:
-            print(", ", end="")
-        else:
-            print("")
+    if len(sys.argv) == 5:
+        param = (sys.argv[4],)
+        cursor.execute(query, param)
+        rows = cursor.fetchall()
+
+        for row in rows:
+            print(row[0], end="")
+            if row != rows[-1]:
+                print(", ", end="")
+            else:
+                print("")
 
     cursor.close()
     db.close()
