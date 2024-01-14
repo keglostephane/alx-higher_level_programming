@@ -22,20 +22,11 @@ if __name__ == "__main__":
         INNER JOIN states
         ON cities.state_id = states.id
         WHERE states.name LIKE BINARY %s
-        ORDER BY cities.id ASC
     """
-
-    if len(sys.argv) == 5:
-        param = (sys.argv[4],)
-        cursor.execute(query, param)
-        rows = cursor.fetchall()
-
-        for row in rows:
-            print(row[0], end="")
-            if row != rows[-1]:
-                print(", ", end="")
-            else:
-                print("")
+    param = (sys.argv[4],)
+    cursor.execute(query, param)
+    rows = cursor.fetchall()
+    print(", ".join([row[0] for row in rows]))
 
     cursor.close()
     db.close()
