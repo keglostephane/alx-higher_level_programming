@@ -17,7 +17,8 @@ if __name__ == "__main__":
         port=3306)
 
     cursor = db.cursor()
-    query = f"SELECT * FROM states WHERE name LIKE BINARY '{sys.argv[4]}'"
+    query = "SELECT * FROM states WHERE name LIKE BINARY '{}'".format(
+        sys.argv[4])
     cursor.execute(query)
     rows = cursor.fetchall()
 
