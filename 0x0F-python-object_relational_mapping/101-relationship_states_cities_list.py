@@ -18,6 +18,6 @@ if __name__ == "__main__":
 
     with Session(engine) as session:
         for state in session.query(State):
-            print(f"{state.id}: {state.name}")
+            print("{}: {}".format(state.id, state.name))
             for city in state.cities:
-                print(f"    {city.id}: {city.name}")
+                print("    {}: {}".format(city.id, city.name))
