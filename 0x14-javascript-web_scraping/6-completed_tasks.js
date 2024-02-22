@@ -14,14 +14,14 @@ if (args.length === 3) {
       const users = JSON.parse(body);
       const dict = new Map();
       for (const user of users) {
-        if (dict.get(`${user.userId}`)) {
+        if (dict.get(user.userId)) {
           if (user.completed) {
-            dict.set(`${user.userId}`,
-              dict.get(`${user.userId}`) + 1);
+            dict.set(user.userId,
+              dict.get(user.userId) + 1);
           }
         } else {
-          if (user.completed) dict.set(`${user.userId}`, 1);
-          else dict.set(`${user.userId}`, 0);
+          if (user.completed) dict.set(user.userId, 1);
+          else dict.set(user.userId, 0);
         }
       }
       const obj = Object.fromEntries(dict);
