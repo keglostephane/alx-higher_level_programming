@@ -6,7 +6,7 @@ const args = process.argv;
 const request = require('request');
 
 if (args.length === 3) {
-  const url = 'https://jsonplaceholder.typicode.com/todos';
+  const url = args[2];
 
   request.get(url, (error, response, body) => {
     if (error) console.log(error);
