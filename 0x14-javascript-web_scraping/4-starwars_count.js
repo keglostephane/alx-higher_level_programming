@@ -7,7 +7,7 @@ const args = process.argv;
 const request = require('request');
 
 if (args.length === 3) {
-  const endpoint = 'https://swapi-api.alx-tools.com/api/films/';
+  const endpoint = args[2];
 
   request.get(endpoint, (error, response, body) => {
     if (error) {
