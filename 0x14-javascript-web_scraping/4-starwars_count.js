@@ -17,7 +17,7 @@ if (args.length === 3) {
       let count = 0;
       for (const film of films) {
         for (const character of film.characters) {
-          if (character.endsWith('/18/')) count += 1;
+          if (character.endsWith('18/')) count += 1;
         }
       }
       console.log(count);
