@@ -7,8 +7,6 @@ const args = process.argv;
 const request = require('request');
 
 if (args.length === 3) {
-  const id = 3;
-  const characterUrl = `https://swapi-api.alx-tools.com/api/people/${id}/`;
   const endpoint = 'https://swapi-api.alx-tools.com/api/films/';
 
   request.get(endpoint, (error, response, body) => {
@@ -19,7 +17,7 @@ if (args.length === 3) {
       let count = 0;
       for (const film of films) {
         for (const character of film.characters) {
-          if (character === characterUrl) {
+          if (character.includes(18)) {
             count += 1;
           }
         }
